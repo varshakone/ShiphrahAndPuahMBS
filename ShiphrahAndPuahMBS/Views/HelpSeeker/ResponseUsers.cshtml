@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ShiphrahAndPuahMBS.Models.ResponseUser>
+
+@{
+    ViewData["Title"] = "Help Seekers List ";
+}
+
+<h1>ResponseUsers</h1>
+
+
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Full_Name)
+            </th>
+            <th> <label class="control-label">Uploaded Files</label></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Full_Name)
+            </td>
+           
+            <td>
+               
+                <div class="form-group">
+                @Html.ActionLink("Download Response Files", "downloadFiles", new {  Full_Name =item.Full_Name}) 
+            </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
