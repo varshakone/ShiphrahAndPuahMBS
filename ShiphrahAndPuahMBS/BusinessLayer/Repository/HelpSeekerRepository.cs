@@ -27,7 +27,6 @@ namespace ShiphrahAndPuahMBS.Businesslayer.Repository
                 if (dResult.Exists)
                 {
                     filePath = filePath + "\\" + newRequest.Full_Name;
-                    table.Add(newRequest);
                     FileStream fileLocation = new FileStream(filePath + "\\" + newRequest.Full_Name + ".xls", FileMode.CreateNew, FileAccess.ReadWrite);
                     ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                     ExcelPackage pack = new ExcelPackage(fileLocation);

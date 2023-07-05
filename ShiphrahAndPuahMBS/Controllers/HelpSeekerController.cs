@@ -20,6 +20,7 @@ namespace ShiphrahAndPuahMBS.Controllers
 
         //Generates the new form for Help Seekers.
 
+        [Route("")]
         [HttpGet]
         public ActionResult newHelpRequest()
         {
@@ -35,7 +36,11 @@ namespace ShiphrahAndPuahMBS.Controllers
             }
         }
 
-        // Submit new help request coming from help seekers.
+
+
+
+        // Submit new help request coming from help seekers and save in respective file.
+        [Route("")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult newHelpRequest(HelpSeeker newHelpRequest)
@@ -61,6 +66,8 @@ namespace ShiphrahAndPuahMBS.Controllers
 
         // permits to download all files uploaded by user. 
         // While downloading zips the folder of all files.
+
+        [Route("/files")]
         [HttpGet]
         public ActionResult downloadFiles([FromQuery] String Full_Name)
         {
@@ -92,8 +99,9 @@ namespace ShiphrahAndPuahMBS.Controllers
         // List names of allow Help Seekers.
         // Allows admin to access those names and download all Excel,Image/pdf files
 
+        [Route("/helpseekerlist")]
         [HttpGet]
-        public ActionResult ResponseUsers()
+        public ActionResult responseUsers()
         {
             try
             {

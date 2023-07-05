@@ -4,22 +4,29 @@
     ViewData["Title"] = "Help Seekers List ";
 }
 
-<h1>ResponseUsers</h1>
+<h1>All Help Seekers</h1>
 
 
 
-    <table class="table">
-    <thead>
+    <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Full_Name)
+            <th scope="col">
+                <label class="control-label">Serial No</label>
             </th>
-            <th> <label class="control-label">Uploaded Files</label></th>
+            <th scope="col">
+                 <label class="control-label">Employee Name</label>
+            </th>
+            <th scope="col"> <label class="control-label">Uploaded Files</label></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @{
+            int count = 1;
+        }
+        @foreach (var item in Model) {
         <tr>
+             <th scope="row">@count</th>
             <td>
                 @Html.DisplayFor(modelItem => item.Full_Name)
             </td>
@@ -27,11 +34,13 @@
             <td>
                
                 <div class="form-group">
-                @Html.ActionLink("Download Response Files", "downloadFiles", new {  Full_Name =item.Full_Name}) 
+                @Html.ActionLink("Download", "downloadFiles", new {  Full_Name =item.Full_Name}) 
             </div>
             </td>
-        </tr>
-}
+            </tr>
+            count++; 
+                
+        }
     </tbody>
 </table>
 
