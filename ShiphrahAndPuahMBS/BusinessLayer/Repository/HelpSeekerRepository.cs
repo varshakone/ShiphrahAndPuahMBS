@@ -14,7 +14,7 @@ namespace ShiphrahAndPuahMBS.Businesslayer.Repository
     public class HelpSeekerRepository : IHelpSeekerRepository
     {
 
-        // Save new help seekers's details in Excel file
+        // Save new help seeker's details in Excel file
         //Each file saved under folder named with Employee Full Name present in Uploaded_Files 
         public string NewHelpRequest(HelpSeeker newRequest, String filePath)
         {
