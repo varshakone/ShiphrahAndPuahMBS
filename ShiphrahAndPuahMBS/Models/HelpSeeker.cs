@@ -21,8 +21,7 @@ namespace ShiphrahAndPuahMBS.Models
         public IFormFile Employee_IDImageOrPDF { get; set; }
 
 
-        [Required(ErrorMessage = "Please type your mobile number")]
-        
+       [Required(ErrorMessage = "Please type your mobile number")]
         public long MobileNumber { get; set; }
 
 
@@ -47,8 +46,18 @@ namespace ShiphrahAndPuahMBS.Models
         [DataType(DataType.Upload)]
         public IFormFile Medical_BillImageOrPDF { get; set; }
 
-
        public long Medical_AmountSanctioned { get; set; }
+
+
+        [Required(ErrorMessage = "Please type your Bank Name ")]
+        public String Bank_Name { get; set; }
+
+        [Required(ErrorMessage = "Please type your Bank IFSC code ")]
+        public String Bank_IFSCCode { get; set; }
+
+
+        [Required(ErrorMessage = "Please type your Bank account number ")]
+        public String Bank_AccountNumber { get; set; }
 
 
 

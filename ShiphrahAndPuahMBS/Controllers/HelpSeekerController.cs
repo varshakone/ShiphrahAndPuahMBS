@@ -6,16 +6,29 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.IO.Compression;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ShiphrahAndPuahMBS.Controllers
 {
     public class HelpSeekerController : Controller
     {
+        public List<string> ImageList { get; set; }
         private IHostingEnvironment _hostingEnvironment;
         private readonly IHelpSeekerService _helpSeekerService;
         public HelpSeekerController(IHelpSeekerService helpSeekerService, IHostingEnvironment hostingEnvironment)
         {
             _helpSeekerService = helpSeekerService; _hostingEnvironment = hostingEnvironment;
+
+            var provider = new PhysicalFileProvider(_hostingEnvironment.WebRootPath);
+            var contents = provider.GetDirectoryContents("image");
+            var objFiles = contents.GetEnumerator();
+            
+            ImageList = new List<string>();
+            while(objFiles.MoveNext())
+            {
+                ImageList.Add(objFiles.Current.Name);
+            }
         }
 
         //Generates the new form for Help Seekers.
@@ -27,6 +40,7 @@ namespace ShiphrahAndPuahMBS.Controllers
             try
             {
                 HelpSeeker newHelpRequest = new HelpSeeker();
+                TempData["files"] = ImageList;
                 return View(newHelpRequest);
             }
             catch (Exception exception)
@@ -47,9 +61,10 @@ namespace ShiphrahAndPuahMBS.Controllers
         {
             try
             {
+                TempData["files"] = ImageList;
 
                 var filePath = _hostingEnvironment.ContentRootPath + "\\Uploaded_Files";
-
+                
                 //ViewBag.FilePath = ;
                 var helpResult = _helpSeekerService.NewHelpRequest(newHelpRequest, filePath);
                 ViewBag.result = helpResult;

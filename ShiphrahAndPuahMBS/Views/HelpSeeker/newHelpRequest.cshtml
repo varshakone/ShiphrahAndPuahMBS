@@ -4,46 +4,47 @@
     ViewData["Title"] = "New Help Seeker Form";
 }
 
-Shiphrah & Puah MBS
-Our wishes in the presious name of our Lord and Saviour Jesus Christ. 
-This small initiative is aimed at supporting the needy Missionaries & their immediately family memebers. 
+Our wishes in the precious name of our Lord and Saviour Jesus Christ. This small initiative is aimed at supporting the Missionaries & their immediate family members on their Medical needs.
 <hr />
 
 <div class="container">  
-  
-<div class="panel panel-primary">  
-  <div class="panel-heading">  
-    <h3 class="panel-title"><strong>New Help Seeker Details</strong></h3>  
-  </div>  
+    <div class="row">
+
+             <div class="col-sm-8" style="padding:0px">
+
+              <div class="panel panel-primary">  
+                <div class="panel-heading">  
+                <h3 class="panel-title"><strong>New Help Seeker Details</strong></h3>  
+                </div>  
 
 
-  <div class="panel-body">  
-   <form asp-action="newHelpRequest" enctype="multipart/form-data" >
+            <div class="panel-body">  
+                    <form asp-action="newHelpRequest" enctype="multipart/form-data" >
      
-        <div class="row  col-sm-12" >
+                     <div class="row col-sm-8" >
         
-             <label  class="control-label" style="color:red">@ViewBag.result 
-            </label>
-        </div>
+                        <label  class="control-label" style="color:red">@ViewBag.result 
+                         </label>
        
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+       
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
            
-            <div class="form-group" style="padding:10px" >
+                         <div class="form-group" style="padding:5px" >
                
            
-                <label  class="control-label col-sm-12" style="padding:5px;">Full Name</label>
-                <div class="col-sm-8">
-                     <input asp-for="Full_Name" class="form-control" />
-                <span asp-validation-for="Full_Name" class="text-danger"></span>   </div>
-                </div>
+                             <label  class="control-label col-sm-12" style="padding:5px;">Full Name</label>
+                            <div >
+                              <input asp-for="Full_Name" class="form-control" />
+                             <span asp-validation-for="Full_Name" class="text-danger"></span> 
+                            </div>
+                        </div>
               
-       
            
             
       
 
        
-            <div class="form-group" style="padding:10px">
+            <div class="form-group" style="padding:5px">
                 <label class="control-label col-sm-12"  style="padding:5px;">Organization Name</label>
                  <div class="col-sm-8">
                 <input asp-for="Organization_Name" class="form-control" />
@@ -94,16 +95,17 @@ This small initiative is aimed at supporting the needy Missionaries & their imme
                 <div class="col-sm-8">
                 <input asp-for="Support_Required" class="form-control" />
                 <span asp-validation-for="Support_Required" class="text-danger"></span>
-            </div>
+                </div>
             </div>
        
 
         
             <div class="form-group" style="padding:10px" >
-                <label class="control-label col-sm-12"  style="padding:5px;">Medical Bill Total Amount
-                </label> <div class="col-sm-8">
+                <label class="control-label col-sm-12"  style="padding:5px;">Medical Bill Total Amount</label>
+                <div class="col-sm-8">
                 <input asp-for="Medical_BillAmount" class="form-control" />
-                <span asp-validation-for="Medical_BillAmount" class="text-danger"></span>  </div>
+                <span asp-validation-for="Medical_BillAmount" class="text-danger"></span> 
+                </div>
             </div>
 
        
@@ -125,7 +127,36 @@ This small initiative is aimed at supporting the needy Missionaries & their imme
                 <input asp-for="Medical_BillImageOrPDF" type="file" accept=".png, .gif, .jpeg, .pdf"  />
                 <span asp-validation-for="Medical_BillImageOrPDF" class="text-danger"></span>   </div>
             </div>
-         
+
+
+            <div class="form-group" style="padding:10px" >
+               <div class="panel panel-primary">
+                 <div class="panel-heading">Bank Details</div>
+                 <div class="panel-body">
+                      <div class="form-group" style="padding:10px" >
+                        <label asp-for="Bank_Name" class="control-label col-sm-12" style="padding:5px;">Name</label> 
+                          <div class="col-sm-8">
+                            <input asp-for="Bank_Name" type="text" accept=".png, .gif, .jpeg, .pdf"  />
+                            <span asp-validation-for="Bank_Name" class="text-danger"></span>   </div>
+
+
+                            <label asp-for="Bank_IFSCCode" class="control-label col-sm-12" style="padding:5px;">IFSC Code</label> 
+                          <div class="col-sm-8">
+                            <input asp-for="Bank_IFSCCode" type="text" accept=".png, .gif, .jpeg, .pdf"  />
+                            <span asp-validation-for="Bank_IFSCCode" class="text-danger"></span>   </div>
+
+                            <label asp-for="Bank_AccountNumber" class="control-label col-sm-12" style="padding:5px;">Account Number</label> 
+                          <div class="col-sm-8">
+                            <input asp-for="Bank_AccountNumber" type="text" accept=".png, .gif, .jpeg, .pdf"  />
+                            <span asp-validation-for="Bank_AccountNumber" class="text-danger"></span>   </div>
+                      </div>
+
+
+                 </div>
+            </div>
+            </div>
+            
+
 
            
             <div class="form-group" style="padding:10px" >
@@ -143,21 +174,47 @@ This small initiative is aimed at supporting the needy Missionaries & their imme
 
             
             
-           
-
+           </div>
+          
        </form>      
        
     </div>
 </div>
 </div>  
+            <div class="col-sm-4" style="padding:0px">
+           @{
+            List<String> ImageList = TempData["files"] as List<String>;
+            var shut = "/image/" + ImageList[0];
+            var pin = "/image/" + ImageList[1];
+           <div>
+                <img src="@pin" height="800" width="500"/>
+            </div>
+            <div><br/>
+                <img src="@shut"  height="760" width="550" />
+            </div>
+            } 
+  
+            </div>
+</div>
+
+
+
+  @*<div class="panel-footer">  
+    <strong> &copy; 2023 - Shiphrah And Puah MBS - </strong>  
+  </div>  *@
+
+      
+
  
 
+  
+
+
+
+  
 
   <div class="panel-footer">  
-    <strong> &copy; 2023 - Shiphrah And Puah MBS - </strong>  
-  </div>  
- 
-  
+    <strong> &copy; 2023 - Shiphrah And Puah MBS - </strong>  </div>
 
 
  

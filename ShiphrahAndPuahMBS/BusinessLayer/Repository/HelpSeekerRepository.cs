@@ -27,20 +27,42 @@ namespace ShiphrahAndPuahMBS.Businesslayer.Repository
                 if (dResult.Exists)
                 {
                     filePath = filePath + "\\" + newRequest.Full_Name;
-                    FileStream fileLocation = new FileStream(filePath + "\\" + newRequest.Full_Name + ".xls", FileMode.CreateNew, FileAccess.ReadWrite);
-                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-                    ExcelPackage pack = new ExcelPackage(fileLocation);
-
-                    ExcelWorksheet ws = pack.Workbook.Worksheets.Add("NewHelp");
-                    ws.Cells["A1"].LoadFromCollection(table, true, TableStyles.Light1);
-                    pack.Save();
-                    var id = this.uploadEmployeeIDImageOrPDF(newRequest.Employee_IDImageOrPDF, filePath);
-                    var prescription= this.uploadDoctorPrescriptionImageOrPDF(newRequest.Doctor_PrescriptionImageOrPDF, filePath); 
-                    var bill= this.uploadMedicalBillImageOrPDF(newRequest.Medical_BillImageOrPDF, filePath);
-                    if(bill!=String.Empty && id !=String.Empty && prescription!= String.Empty )
+                    if(!File.Exists(filePath + "\\" + newRequest.Full_Name + ".xls"))
                     {
-                        requestResult = "Request Submitted Successfully";
+                        FileStream fileLocation = new FileStream(filePath + "\\" + newRequest.Full_Name + ".xls", FileMode.CreateNew, FileAccess.ReadWrite);
+                        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                        ExcelPackage pack = new ExcelPackage(fileLocation);
+
+                        ExcelWorksheet ws = pack.Workbook.Worksheets.Add("NewHelp");
+                        ws.Cells["A1"].LoadFromCollection(table, true, TableStyles.Light1);
+                        pack.Save();
+                        var id = this.uploadEmployeeIDImageOrPDF(newRequest.Employee_IDImageOrPDF, filePath);
+                        var prescription = this.uploadDoctorPrescriptionImageOrPDF(newRequest.Doctor_PrescriptionImageOrPDF, filePath);
+                        var bill = this.uploadMedicalBillImageOrPDF(newRequest.Medical_BillImageOrPDF, filePath);
+                        if (bill != String.Empty && id != String.Empty && prescription != String.Empty)
+                        {
+                            requestResult = "Request Submitted Successfully";
+                        }
                     }
+                    else
+                    {
+                        FileStream fileLocation = new FileStream(filePath + "\\" + newRequest.Full_Name + ".xls", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+
+                        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                        ExcelPackage pack = new ExcelPackage(fileLocation);
+
+                        ExcelWorksheet ws = pack.Workbook.Worksheets.Add("NewHelp1");
+                        ws.Cells["A1"].LoadFromCollection(table, true, TableStyles.Light1);
+                        pack.Save();
+                        var id = this.uploadEmployeeIDImageOrPDF(newRequest.Employee_IDImageOrPDF, filePath);
+                        var prescription = this.uploadDoctorPrescriptionImageOrPDF(newRequest.Doctor_PrescriptionImageOrPDF, filePath);
+                        var bill = this.uploadMedicalBillImageOrPDF(newRequest.Medical_BillImageOrPDF, filePath);
+                        if (bill != String.Empty && id != String.Empty && prescription != String.Empty)
+                        {
+                            requestResult = "Request Submitted Successfully";
+                        }
+                    }
+                    
                }
             }
             else
