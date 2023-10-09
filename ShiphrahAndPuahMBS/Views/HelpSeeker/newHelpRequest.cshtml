@@ -7,7 +7,10 @@
 Our wishes in the precious name of our Lord and Saviour Jesus Christ. This small initiative is aimed at supporting the Missionaries & their immediate family members on their Medical needs.
 <hr />
 
-<div class="container">  
+
+
+  
+<div class="container" >  
     <div class="row">
 
              <div class="col-sm-8" style="padding:0px">
@@ -181,7 +184,7 @@ Our wishes in the precious name of our Lord and Saviour Jesus Christ. This small
     </div>
 </div>
 </div>  
-            <div class="col-sm-4" style="padding:0px">
+           @* <div class="col-sm-4" style="padding:0px">
            @{
             List<String> ImageList = TempData["files"] as List<String>;
             var shut = "/image/" + ImageList[0];
@@ -194,7 +197,7 @@ Our wishes in the precious name of our Lord and Saviour Jesus Christ. This small
             </div>
             } 
   
-            </div>
+            </div>*@
 </div>
 
 
@@ -216,7 +219,7 @@ Our wishes in the precious name of our Lord and Saviour Jesus Christ. This small
   <div class="panel-footer">  
     <strong> &copy; 2023 - Shiphrah And Puah MBS - </strong>  </div>
 
-
+  
  
 @section Scripts{   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}       }
    

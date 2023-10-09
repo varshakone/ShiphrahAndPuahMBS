@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/> 
 </head>
-<body>
+ @{
+            List<String> ImageList = TempData["files"] as List<String>;
+            var Jhands = "/image/" + ImageList[0];
+            //var pin = "/image/" + ImageList[1];
+          
+            
+ } 
+<body style="background: url('@Url.Content(Jhands)');image-resolution:from-image;image-rendering:optimizeQuality;mask-image;list-style-image:none">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">

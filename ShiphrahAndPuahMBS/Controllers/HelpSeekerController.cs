@@ -29,6 +29,12 @@ namespace ShiphrahAndPuahMBS.Controllers
             {
                 ImageList.Add(objFiles.Current.Name);
             }
+
+            //if(TempData["files"] == null)
+            //{
+            //    TempData["files"] = ImageList;
+            //}
+            
         }
 
         //Generates the new form for Help Seekers.
@@ -40,7 +46,7 @@ namespace ShiphrahAndPuahMBS.Controllers
             try
             {
                 HelpSeeker newHelpRequest = new HelpSeeker();
-                TempData["files"] = ImageList;
+               TempData["files"] = ImageList;
                 return View(newHelpRequest);
             }
             catch (Exception exception)
@@ -88,7 +94,8 @@ namespace ShiphrahAndPuahMBS.Controllers
         {
             try
             {
-             String[] files= Directory.GetFiles(_hostingEnvironment.ContentRootPath + "\\Uploaded_Files\\" + Full_Name);
+                TempData["files"] = ImageList;
+                String[] files= Directory.GetFiles(_hostingEnvironment.ContentRootPath + "\\Uploaded_Files\\" + Full_Name);
 
                 MemoryStream stream = new MemoryStream();
                 
@@ -120,18 +127,28 @@ namespace ShiphrahAndPuahMBS.Controllers
         {
             try
             {
+                TempData["files"] = ImageList;
                 var filePath = _hostingEnvironment.ContentRootPath + "\\Uploaded_Files";
                 DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
                 
                 var folderList = directoryInfo.GetDirectories();
                 
-                List<ResponseUser> users = new List<ResponseUser>();
-                foreach (var folder in folderList)
-                {
-                    users.Add(new ResponseUser() { Full_Name = folder.Name });
-                }
 
-                return View(users);
+                if(folderList.Length > 0)
+                {
+                    List<ResponseUser> users = new List<ResponseUser>();
+                    foreach (var folder in folderList)
+                    {
+                        users.Add(new ResponseUser() { Full_Name = folder.Name });
+                    }
+
+                    return View(users);
+                }
+                else
+                {
+                    return View();
+                }
+                
             }
             catch (Exception exception)
             {

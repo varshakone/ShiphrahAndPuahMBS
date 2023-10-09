@@ -22,10 +22,8 @@
 
   <ItemGroup>
     <Folder Include="Uploaded_Files\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Image\pinterest.jpg" />
+    <Folder Include="wwwroot\Image\" />
+    <Folder Include="wwwroot\Uploaded_Files\" />
   </ItemGroup>
 
 </Project>

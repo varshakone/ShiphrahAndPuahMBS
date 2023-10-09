@@ -1,16 +1,22 @@
 ﻿@model IEnumerable<ShiphrahAndPuahMBS.Models.ResponseUser>
 
-@{
+
+@if(Model !=null)
+{
+   
     ViewData["Title"] = "Help Seekers List ";
 }
+
+
+
 
 <h1>All Help Seekers</h1>
 
 
-
-    <table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-        <tr>
+    
+        <table class="table table-striped table-bordered">
+             <thead class="thead-dark">
+                   <tr>
             <th scope="col">
                 <label class="control-label">Serial No</label>
             </th>
@@ -21,10 +27,15 @@
         </tr>
     </thead>
     <tbody>
+
+
+        
         @{
             int count = 1;
         }
-        @foreach (var item in Model) {
+        @if(Model != null)
+        {
+            @foreach (var item in Model) {
         <tr>
              <th scope="row">@count</th>
             <td>
@@ -41,6 +52,12 @@
             count++; 
                 
         }
+        }
+        else
+        {
+            <label class="control-label" style="color:red" ><b>New help request not found</b></label>
+        }
+        
     </tbody>
 </table>
 
