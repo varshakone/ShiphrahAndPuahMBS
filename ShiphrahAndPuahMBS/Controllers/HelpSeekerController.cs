@@ -69,10 +69,11 @@ namespace ShiphrahAndPuahMBS.Controllers
             {
                 TempData["files"] = ImageList;
 
-                var filePath = _hostingEnvironment.ContentRootPath + "\\Uploaded_Files";
+                var filePath = _hostingEnvironment.WebRootPath + "\\Uploaded_Files";
                 
                 //ViewBag.FilePath = ;
                 var helpResult = _helpSeekerService.NewHelpRequest(newHelpRequest, filePath);
+                ViewBag.file = filePath;
                 ViewBag.result = helpResult;
                 return View();
             }
@@ -95,7 +96,7 @@ namespace ShiphrahAndPuahMBS.Controllers
             try
             {
                 TempData["files"] = ImageList;
-                String[] files= Directory.GetFiles(_hostingEnvironment.ContentRootPath + "\\Uploaded_Files\\" + Full_Name);
+                String[] files= Directory.GetFiles(_hostingEnvironment.WebRootPath + "\\Uploaded_Files\\" + Full_Name);
 
                 MemoryStream stream = new MemoryStream();
                 
@@ -128,7 +129,7 @@ namespace ShiphrahAndPuahMBS.Controllers
             try
             {
                 TempData["files"] = ImageList;
-                var filePath = _hostingEnvironment.ContentRootPath + "\\Uploaded_Files";
+                var filePath = _hostingEnvironment.WebRootPath + "\\Uploaded_Files";
                 DirectoryInfo directoryInfo = new DirectoryInfo(filePath);
                 
                 var folderList = directoryInfo.GetDirectories();
